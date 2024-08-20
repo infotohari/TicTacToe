@@ -1,18 +1,19 @@
 package TicTacToe.models;
 
 
+import TicTacToe.factory.BotPlayingStrategyFactory;
 import TicTacToe.strategies.BotWinningStrategies.BotWinningStrategy;
 
 //bot is type of a player so it will extend Player class
 public class Bot extends Player{
     private BotDifficultyLevel botDifficultyLevel;
-    private BotWinningStrategy botWinningStrategy ;
+    private BotWinningStrategy botPlayingStrategy;
 
     // constructor
-    public Bot(String playerName,Symbol symbol ,BotDifficultyLevel botDifficultyLevel, BotWinningStrategy botWinningStrategy) {
+    public Bot(String playerName,Symbol symbol ,BotDifficultyLevel botDifficultyLevel) {
         super(playerName, symbol, PlayerType.BOT);
         this.botDifficultyLevel = botDifficultyLevel;
-        this.botWinningStrategy = botWinningStrategy;
+        this.botPlayingStrategy = BotPlayingStrategyFactory.getBotPlayingStrategy(botDifficultyLevel);
     }
 
 
@@ -24,11 +25,17 @@ public class Bot extends Player{
         this.botDifficultyLevel = botDifficultyLevel;
     }
 
-    public BotWinningStrategy getBotWinningStrategy() {
-        return botWinningStrategy;
+    public BotWinningStrategy getBotPlayingStrategy() {
+        return botPlayingStrategy;
     }
 
-    public void setBotWinningStrategy(BotWinningStrategy botWinningStrategy) {
-        this.botWinningStrategy = botWinningStrategy;
+    public void setBotPlayingStrategy(BotWinningStrategy botPlayingStrategy) {
+        this.botPlayingStrategy = botPlayingStrategy;
+    }
+
+    @Override
+    public Move makeMove(Board board) {
+       Move move = botPlayingStrategy.makeMove(board);
+       return move;
     }
 }

@@ -2,7 +2,12 @@ package TicTacToe.models;
 
 public class Move {
     private Player player;
-    private Move move ;
+    private Cell cell;
+
+    public Move(Player player, Cell cell) {
+        this.player = player;
+        this.cell = cell;
+    }
 
     public Player getPlayer() {
         return player;
@@ -12,11 +17,12 @@ public class Move {
         this.player = player;
     }
 
-    public Move getMove() {
-        return move;
+    public Cell getCell() {
+        return cell;
     }
 
-    public void setMove(Move move) {
-        this.move = move;
+    public void setCell(Cell cell) {
+        this.cell = cell;
     }
+
 }

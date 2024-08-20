@@ -29,7 +29,9 @@ public class Board {
                 if(cell.getCellState() == CellState.EMPTY){
                     System.out.print("| |");
                 }else{
-                    System.out.print("|" + cell.getPlayer().getSymbol());
+                    System.out.print("|" + cell.getPlayer().getSymbol().getaChar() + " |0" +
+                            "0" +
+                            "");
                 }
             }
             System.out.println();
